@@ -1,6 +1,5 @@
 extern "C" void app_main();
 
-#include "Wifi.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
@@ -11,10 +10,14 @@ extern "C" void app_main();
 #include <stdio.h>
 #include <iostream>
 
+#include "Wifi.h"
+#include "HTTPClient.h"
+
 void InitializeNVS();
 
 void app_main(void)
 {
+
     InitializeNVS();
 
     Wifi wifi = Wifi();
@@ -23,6 +26,12 @@ void app_main(void)
         LOGGER("Woo");
     else
         LOGGER("Not wooo");
+
+    if(!success)
+        return;
+    
+    HTTPClient client = HTTPClient();
+    client.PostData();
 }
 
 void InitializeNVS()
