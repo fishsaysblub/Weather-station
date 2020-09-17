@@ -14,10 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("WeatherStation");
 
     makeChart("tempreture", tempretureSeries, tempretureChart, tempretureChartview);
-    makeChart("airPressure", airPressureSeries, airPressureChart, airPressureChartview);
+    makeChart("Humidity", HumiditySeries, HumidityChart, HumidityChartview);
 
     ui->gridLayout_3->addWidget(tempretureChartview, 1, 0);
-    ui->gridLayout_3->addWidget(airPressureChartview, 1, 1);
+    ui->gridLayout_3->addWidget(HumidityChartview, 1, 1);
 }
 
 MainWindow::~MainWindow()
@@ -26,21 +26,22 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::makeChart(const QString title, QSplineSeries *series, QChart *chart, QChartView *chartView){
-    MainWindow::getTSeries(series, 0);
+    MainWindow::getSeries(series, 0);
 
     chart->addSeries(series);
     chart->legend()->hide();
     chart->createDefaultAxes();
     chart->axes(Qt::Vertical).first()->setRange(-10, 30);
+    chart->axes(Qt::Horizontal).first()->setRange(0, 8);
     chart->setTitle(title);
 
     chartView->setRenderHint(QPainter::Antialiasing);
     chartView->chart()->setTheme(QChart::ChartThemeBlueCerulean);
 }
 
-void MainWindow::getTSeries(QSplineSeries *series, int h){
-    for(i = 0; i <11; i++){
+void MainWindow::getSeries(QSplineSeries *series, int h){
+    for(i = 0; i <7; i++){
         int k = (i^5)*2+h;
-        series->append(i,k);
+        series->append(i+1,k);
     }
 }

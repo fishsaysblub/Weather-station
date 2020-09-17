@@ -20,7 +20,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void getTSeries(QSplineSeries *series, int h);
+    void getSeries(QSplineSeries *series, int h);
 
     void makeChart(const QString title, QSplineSeries *series, QChart *chart, QChartView *chartView);
 
@@ -31,9 +31,9 @@ private:
     QChart *tempretureChart = new QChart();
     QChartView *tempretureChartview = new QChartView(tempretureChart);
 
-    QSplineSeries *airPressureSeries = new QSplineSeries();
-    QChart *airPressureChart = new QChart();
-    QChartView *airPressureChartview = new QChartView(airPressureChart);
+    QSplineSeries *HumiditySeries = new QSplineSeries();
+    QChart *HumidityChart = new QChart();
+    QChartView *HumidityChartview = new QChartView(HumidityChart);
 
     Ui::MainWindow *ui;
 };
