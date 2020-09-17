@@ -20,19 +20,21 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void getTampreture(QSplineSeries *series, int h);
-    void getAirPresure(QSplineSeries *series);
+    void getTSeries(QSplineSeries *series, int h);
 
-    void update();
-
-private slots:
-    void on_textEdit_cursorPositionChanged();
-
-    void on_textEdit_2_cursorPositionChanged();
+    void makeChart(const QString title, QSplineSeries *series, QChart *chart, QChartView *chartView);
 
 private:
     int i;
+
+    QSplineSeries *tempretureSeries = new QSplineSeries();
+    QChart *tempretureChart = new QChart();
+    QChartView *tempretureChartview = new QChartView(tempretureChart);
+
+    QSplineSeries *airPressureSeries = new QSplineSeries();
     QChart *airPressureChart = new QChart();
+    QChartView *airPressureChartview = new QChartView(airPressureChart);
+
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
