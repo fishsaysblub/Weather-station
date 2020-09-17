@@ -11,13 +11,12 @@ class sensor
 {
     private:
     int16_t readHumidity;
-    int16_t readTemperature;
-
+   
     public:
     sensor();
 
     uint8_t readFirmware();
-
+    uint16_t readTemperature();
     int test;
 
 };

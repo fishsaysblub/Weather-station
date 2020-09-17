@@ -1,47 +1,30 @@
 #include "sensors.h"
 #include <iostream>
+#include <stdio.h>
+#include "i2c_cmd.h"
 
-static gpio_num_t i2c_gpio_sda = GPIO_NUM_21;
-static gpio_num_t i2c_gpio_scl = GPIO_NUM_22;
-static uint32_t i2c_frequency = 100000;
-static i2c_port_t i2c_port = I2C_NUM_0;
+i2c_cmd i2c_command;
 
-static uint8_t sensor_address = 0x40;
+static uint8_t si7021_address = 0x40; // Meegeven met sensorfunctie
 
 sensor::sensor()
 {
-    i2c_config_t conf;
-    conf.mode = I2C_MODE_MASTER;
-    conf.sda_io_num = i2c_gpio_sda;
-    conf.scl_io_num = i2c_gpio_scl;
-    conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.master.clk_speed = i2c_frequency;
-
-    i2c_param_config(i2c_port, &conf);
-
-    i2c_driver_install(i2c_port, I2C_MODE_MASTER, 0, 0, 0 );
-
-    std::cout << "i2c config finished" << std::endl;
+    // Nothing
 }
 
-uint8_t sensor::readFirmware()
+uint16_t sensor::readTemperature()
 {
-    const uint8_t cmd_read_firmware[] = {0x84, 0xB8};
-    uint8_t firmwareVersion;
-    uint8_t *ptr = &firmwareVersion;
-    i2c_cmd_handle_t cmd = i2c_cmd_link_create();
+    const uint8_t cmd_read_temp[] = {0xF3};
+    uint8_t temp[2];
 
-    i2c_master_start(cmd);
-    i2c_master_write_byte(cmd, (sensor_address << 1 | I2C_MASTER_WRITE), I2C_MASTER_ACK);
-    i2c_master_write(cmd, (uint8_t *)cmd_read_firmware, 2, I2C_MASTER_ACK);
-    i2c_master_write_byte(cmd, (sensor_address << 1 | I2C_MASTER_READ), I2C_MASTER_ACK);
-    i2c_master_read_byte(cmd, ptr, I2C_MASTER_LAST_NACK);
-    //i2c_master_read(cmd, )
-    
-    i2c_master_stop(cmd);
-    i2c_master_cmd_begin(i2c_port, cmd, 1000 / portTICK_RATE_MS);
-    i2c_cmd_link_delete(cmd);
+    i2c_command.writeCmd(si7021_address, (uint8_t *)cmd_read_temp, 1);
+    vTaskDelay(100 / portTICK_RATE_MS);
+    i2c_command.readCmd(si7021_address, (uint8_t *)cmd_read_temp, 1, temp, 2);
 
-    return firmwareVersion;
+    uint16_t temperature = temp[0] << 8 | temp[1];
+    float calculatedTemp = (((175.72 * temperature) / 65536.0) - 46.85);
+
+    printf("Temp reading: %f\n", calculatedTemp);
+
+    return 0;
 }
