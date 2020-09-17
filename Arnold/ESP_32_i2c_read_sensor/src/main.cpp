@@ -71,11 +71,10 @@ void readTempTask(void *arg)
     
     while (1)
     {
-       temp.readTemperature();
+       temp.readHumidity(); //readTemperature();
         vTaskDelay(1000 / portTICK_RATE_MS);
     }
 }
-
 
 void app_main()
 {
