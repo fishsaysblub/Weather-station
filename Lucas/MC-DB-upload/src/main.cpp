@@ -1,6 +1,4 @@
-extern "C" {
-	void app_main();
-}
+extern "C" void app_main();
 
 #include "Wifi.h"
 #include "freertos/FreeRTOS.h"

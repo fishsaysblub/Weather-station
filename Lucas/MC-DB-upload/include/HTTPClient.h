@@ -6,4 +6,4 @@ class HTTPClient
 {
     public:
         HTTPClient();
-}
+};
