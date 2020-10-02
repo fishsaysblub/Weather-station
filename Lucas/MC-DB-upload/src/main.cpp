@@ -2,20 +2,14 @@ extern "C" void app_main();
 
 #include "Wifi.h"
 #include "HTTPClient.h"
-#include "nvs_flash.h"
 #include "Data.h"
-
-
-void InitializeNVS();
+#include <string.h>
 
 void app_main(void)
 {
-    InitializeNVS();
-
     Wifi wifi = Wifi();
     int success = wifi.InitializeWifi();
 
-    return;
     if(success)
         LOGGER("Woo");
     else
@@ -25,7 +19,6 @@ void app_main(void)
         return;
     
     return;
-
     HTTPClient client = HTTPClient();
 
     Data data;
@@ -39,17 +32,9 @@ void app_main(void)
         .Humidity = 32
     };
 
-    client.PostData(data);
-}
-
-void InitializeNVS()
-{
-    // Initialize non-volatile storage
-    esp_err_t ret = nvs_flash_init();
-    if (ret == (ESP_ERR_NVS_NO_FREE_PAGES || ESP_ERR_NVS_NEW_VERSION_FOUND))
-    {
-      ESP_ERROR_CHECK(nvs_flash_erase());
-      ret = nvs_flash_init();
-    }
-    ESP_ERROR_CHECK(ret);
+    int result = client.PostData(data);
+    if(result == ESP_OK)
+        printf("is ok");
+    else if(result == ESP_FAIL)
+        printf("is not ok");
 }
