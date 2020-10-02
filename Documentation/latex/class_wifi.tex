@@ -1,0 +1,73 @@
+\hypertarget{class_wifi}{}\doxysection{Wifi Class Reference}
+\label{class_wifi}\index{Wifi@{Wifi}}
+
+
+Class handling W\+I\+FI interactions.  
+
+
+
+
+{\ttfamily \#include $<$Wifi.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_wifi_a63b40a234377f5927d2d34d67826a010}{Wifi}} ()
+\begin{DoxyCompactList}\small\item\em Reasonably easy implementation to interact as wifi client (Station). \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_wifi_a90d1e021bc65f7c5c01e844306833958}{Initialize\+Wifi}} ()
+\begin{DoxyCompactList}\small\item\em Blocking initialisation of the wifi class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class handling W\+I\+FI interactions. 
+
+The Wi-\/\+Fi module aims to allow for Wi-\/\+Fi connections to be established as an AT module. Must construct the \mbox{\hyperlink{class_wifi}{Wifi}} class followed by a call to \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_wifi_a90d1e021bc65f7c5c01e844306833958}{Initialize\+Wifi()}}; 
+\end{DoxySeeAlso}
+
+
+Definition at line 32 of file Wifi.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_wifi_a63b40a234377f5927d2d34d67826a010}\label{class_wifi_a63b40a234377f5927d2d34d67826a010}} 
+\index{Wifi@{Wifi}!Wifi@{Wifi}}
+\index{Wifi@{Wifi}!Wifi@{Wifi}}
+\doxysubsubsection{\texorpdfstring{Wifi()}{Wifi()}}
+{\footnotesize\ttfamily Wifi\+::\+Wifi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reasonably easy implementation to interact as wifi client (Station). 
+
+Aims to establish a wifi connection as Client (station). Expects a follow up call to {\itshape Initialise\+Wifi()} 
+
+Definition at line 12 of file Wifi.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_wifi_a90d1e021bc65f7c5c01e844306833958}\label{class_wifi_a90d1e021bc65f7c5c01e844306833958}} 
+\index{Wifi@{Wifi}!InitializeWifi@{InitializeWifi}}
+\index{InitializeWifi@{InitializeWifi}!Wifi@{Wifi}}
+\doxysubsubsection{\texorpdfstring{InitializeWifi()}{InitializeWifi()}}
+{\footnotesize\ttfamily int Wifi\+::\+Initialize\+Wifi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Blocking initialisation of the wifi class. 
+
+Blocking initialisation of the wifi class. Will cause a large power draw spike. \begin{DoxyReturn}{Returns}
+whether it connected or failed. 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file Wifi.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_wifi_8h}{Wifi.\+h}}\item 
+src/\mbox{\hyperlink{_wifi_8cpp}{Wifi.\+cpp}}\end{DoxyCompactItemize}

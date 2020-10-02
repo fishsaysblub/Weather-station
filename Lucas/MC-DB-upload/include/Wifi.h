@@ -27,7 +27,7 @@
 /*!
     The Wi-Fi module aims to allow for Wi-Fi connections to be established as an AT module.
     Must construct the Wifi class followed by a call to 
-    \sa WiFi::InitializeWifi();
+    \sa InitializeWifi();
 */
 class Wifi
 {
@@ -76,7 +76,7 @@ class Wifi
         /*!
             Aims to establish a wifi connection as Client (station).
             Expects a follow up call to 
-            \a Wifi::InitialiseWifi()
+            \a InitialiseWifi()
         */
 		Wifi();
 

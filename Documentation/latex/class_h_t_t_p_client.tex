@@ -1,0 +1,83 @@
+\hypertarget{class_h_t_t_p_client}{}\doxysection{H\+T\+T\+P\+Client Class Reference}
+\label{class_h_t_t_p_client}\index{HTTPClient@{HTTPClient}}
+
+
+Wrapper for H\+T\+TP requests.  
+
+
+
+
+{\ttfamily \#include $<$H\+T\+T\+P\+Client.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_h_t_t_p_client_a23a15a8f27ac926a86c2ef7bc7bfebcb}{H\+T\+T\+P\+Client}} ()
+\begin{DoxyCompactList}\small\item\em Prepares an H\+T\+TP instance for H\+T\+TP post requests. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_h_t_t_p_client_a79247908a5234756f6e98a06069100e2}{Post\+Data}} (\mbox{\hyperlink{struct_data}{Data}} data)
+\begin{DoxyCompactList}\small\item\em Posts the data within given \mbox{\hyperlink{struct_data}{Data}} struct to DB. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Wrapper for H\+T\+TP requests. 
+
+Prepares and manages the H\+T\+TP client for sending data. Sends data to a predetirmened database through P\+O\+ST requests. For the data see\+: \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_data}{Data}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 13 of file H\+T\+T\+P\+Client.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_h_t_t_p_client_a23a15a8f27ac926a86c2ef7bc7bfebcb}\label{class_h_t_t_p_client_a23a15a8f27ac926a86c2ef7bc7bfebcb}} 
+\index{HTTPClient@{HTTPClient}!HTTPClient@{HTTPClient}}
+\index{HTTPClient@{HTTPClient}!HTTPClient@{HTTPClient}}
+\doxysubsubsection{\texorpdfstring{HTTPClient()}{HTTPClient()}}
+{\footnotesize\ttfamily H\+T\+T\+P\+Client\+::\+H\+T\+T\+P\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prepares an H\+T\+TP instance for H\+T\+TP post requests. 
+
+Prepares an H\+T\+TP instance for H\+T\+TP post requests. In order to post data construct a \mbox{\hyperlink{struct_data}{Data}} class and use Post\+Data. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{struct_data}{Data}} 
+
+\mbox{\hyperlink{class_h_t_t_p_client_a79247908a5234756f6e98a06069100e2}{H\+T\+T\+P\+Client\+::\+Post\+Data}} 
+\end{DoxySeeAlso}
+
+
+Definition at line 5 of file H\+T\+T\+P\+Client.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_h_t_t_p_client_a79247908a5234756f6e98a06069100e2}\label{class_h_t_t_p_client_a79247908a5234756f6e98a06069100e2}} 
+\index{HTTPClient@{HTTPClient}!PostData@{PostData}}
+\index{PostData@{PostData}!HTTPClient@{HTTPClient}}
+\doxysubsubsection{\texorpdfstring{PostData()}{PostData()}}
+{\footnotesize\ttfamily int H\+T\+T\+P\+Client\+::\+Post\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_data}{Data}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Posts the data within given \mbox{\hyperlink{struct_data}{Data}} struct to DB. 
+
+Posts the data within given \mbox{\hyperlink{struct_data}{Data}} struct to DB. 
+\begin{DoxyParams}{Parameters}
+{\em data} & The data struct which data has to be posted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns E\+S\+P\+\_\+\+OK on succeed, E\+S\+P\+\_\+\+F\+A\+IL on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 15 of file H\+T\+T\+P\+Client.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_h_t_t_p_client_8h}{H\+T\+T\+P\+Client.\+h}}\item 
+src/\mbox{\hyperlink{_h_t_t_p_client_8cpp}{H\+T\+T\+P\+Client.\+cpp}}\end{DoxyCompactItemize}
