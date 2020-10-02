@@ -35,9 +35,15 @@ void Wifi::HandleWifiEvent(int32_t event_id)
 {
     if(event_id == WIFI_EVENT_STA_START)
     {
+        // Not checking the return value,
+        // This is due to all failures except one are
+        // failures on the programmers side.
         esp_wifi_connect();
         return;
     }
+
+    if(event_id == WIFI_EVENT_STA_CONNECTED)
+        return;
 
     if (s_retry_num < ESP_MAXIMUM_RETRY) 
     {
@@ -48,7 +54,7 @@ void Wifi::HandleWifiEvent(int32_t event_id)
         return;
     } 
     
-    xEventGroupSetBits(s_wifi_event_group, WIFI_FAIL_BIT);
+    xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTION_FAILED_BIT);
     LOGGER("Failed to establish a wifi connection.");
 }
 
@@ -56,7 +62,11 @@ int Wifi::InitializeWifi()
 {
     wifi_config_t wifi_config;
     InitWifiConfig(&wifi_config);
-    ESP_ERROR_CHECK(esp_wifi_start());
+
+    ESP_ERROR_CHECK(esp_wifi_start()); 
+
+    //TODO: Low power mode is to be tested... some day.
+    //ESP_ERROR_CHECK(esp_wifi_set_ps(WIFI_PS_MIN_MODEM));
     
     AwaitConnection();
 
@@ -67,6 +77,7 @@ int Wifi::InitializeWifi()
     int status = (bits & WIFI_CONNECTED_BIT);
     vEventGroupDelete(s_wifi_event_group);
     LOGGER("Finished wifi routine.");  
+
     return status;
 }
 
@@ -86,10 +97,10 @@ void Wifi::AwaitConnection()
     EventBits_t bits = xEventGroupWaitBits
     (
         s_wifi_event_group,
-        WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
-        pdFALSE,
-        pdFALSE,
-        portMAX_DELAY
+        WIFI_CONNECTED_BIT | WIFI_CONNECTION_FAILED_BIT, // Bits to wait on
+        pdFALSE, // The bits must not be cleared when returning.
+        pdFALSE, // One of the bits should be set
+        portMAX_DELAY // Basically wait untill the end of times.... or well for the port at least.
     );
 
     if (bits & WIFI_CONNECTED_BIT) 
@@ -97,7 +108,7 @@ void Wifi::AwaitConnection()
         LOGGER("Established wifi connection.");  
         return;
     } 
-    else if (bits & WIFI_FAIL_BIT) 
+    else if (bits & WIFI_CONNECTION_FAILED_BIT) 
     {
         LOGGER("Failed to connect to wifi, check credentials and password.");
         return;

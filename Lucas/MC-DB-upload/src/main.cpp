@@ -1,27 +1,21 @@
 extern "C" void app_main();
 
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/event_groups.h"
-#include "esp_system.h"
-#include "esp_log.h"
-#include "nvs_flash.h"
-
-#include <stdio.h>
-#include <iostream>
-
 #include "Wifi.h"
 #include "HTTPClient.h"
+#include "nvs_flash.h"
+#include "Data.h"
+
 
 void InitializeNVS();
 
 void app_main(void)
 {
-
     InitializeNVS();
 
     Wifi wifi = Wifi();
     int success = wifi.InitializeWifi();
+
+    return;
     if(success)
         LOGGER("Woo");
     else
@@ -30,8 +24,22 @@ void app_main(void)
     if(!success)
         return;
     
+    return;
+
     HTTPClient client = HTTPClient();
-    client.PostData();
+
+    Data data;
+    memset(&data, 0, sizeof(Data));
+    data.Humidity = 34;
+    data.Temperature = 52;
+    
+    Data data2 = 
+    {
+        .Temperature = 34,
+        .Humidity = 32
+    };
+
+    client.PostData(data);
 }
 
 void InitializeNVS()

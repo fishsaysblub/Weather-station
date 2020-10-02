@@ -1,19 +1,8 @@
 #pragma once
 
 #include "esp_http_client.h"
-
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_log.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
-#include "esp_event.h"
-#include "esp_netif.h"
-#include "esp_tls.h"
-
-#include <stdio.h>
-#include <iostream>
 #include <string.h>
+#include "Data.h"
 
 class HTTPClient 
 {
@@ -24,5 +13,5 @@ class HTTPClient
 
     public:
         HTTPClient();
-        void PostData();
+        void PostData(Data data);
 };

@@ -1,16 +1,10 @@
 #pragma once
 
 #include <string.h>
-#include <stdio.h>
-#include <iostream>
 
 #include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
 #include "freertos/event_groups.h"
-#include "esp_system.h"
 #include "esp_wifi.h"
-#include "esp_event.h"
-#include "esp_log.h"
 
 #include "lwip/err.h"
 #include "lwip/sys.h"
@@ -21,11 +15,12 @@
 #define ESP_MAXIMUM_RETRY   5
 
 #define WIFI_CONNECTED_BIT  BIT0
-#define WIFI_FAIL_BIT   BIT1
+#define WIFI_CONNECTION_FAILED_BIT   BIT1
 
 class Wifi
 {
-    private:
+
+    private:    
         void InitWifiConfig(wifi_config_t *config);
         static void HandleWifiEvent(int32_t event_id);
         void AwaitConnection();

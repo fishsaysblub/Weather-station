@@ -1,13 +1,8 @@
 #include "HTTPClient.h"
 
-const char *post_data = "{\"temp\":\"7\"}";
-
 esp_err_t EventHandler(esp_http_client_event_t *evt);
 
-HTTPClient::HTTPClient()
-{
-    InitHTTPClientConfig(&_config);
-}
+HTTPClient::HTTPClient() { InitHTTPClientConfig(&_config); }
 
 void HTTPClient::InitHTTPClientConfig(esp_http_client_config_t *config)
 {
@@ -17,11 +12,14 @@ void HTTPClient::InitHTTPClientConfig(esp_http_client_config_t *config)
     config->event_handler = EventHandler;
 }
 
-void HTTPClient::PostData()
+void HTTPClient::PostData(Data data)
 {
     esp_http_client_handle_t client = esp_http_client_init(&_config);
-    esp_http_client_set_header(client, "Content-Type", "application/json");
-    esp_http_client_set_post_field(client, post_data, strlen(post_data));
+    ESP_ERROR_CHECK(esp_http_client_set_header(client, "Content-Type", "application/json"));
+
+    char buffer[MAX_POST_SIZE];
+    data.GetPost(buffer);
+    ESP_ERROR_CHECK(esp_http_client_set_post_field(client, buffer, strlen(buffer)));
 
 	esp_err_t err = esp_http_client_perform(client);
 	if (err == ESP_OK) 
@@ -36,8 +34,10 @@ void HTTPClient::PostData()
     {
          printf("HTTP POST request failed: %s", esp_err_to_name(err));
 	}
-    esp_http_client_close(client);
-	esp_http_client_cleanup(client);
+
+    ESP_ERROR_CHECK(err);    
+    ESP_ERROR_CHECK(esp_http_client_close(client));
+	ESP_ERROR_CHECK(esp_http_client_cleanup(client));
     return;
 }
 
