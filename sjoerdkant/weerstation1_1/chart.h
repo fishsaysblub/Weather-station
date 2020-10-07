@@ -2,6 +2,8 @@
 #ifndef CHART_H
 #define CHART_H
 
+#include "chartValues.h"
+
 #include <QWidget>
 #include <QtCharts>
 #include <QtCharts/QChartGlobal>
@@ -10,14 +12,6 @@
 #include <QtSql>
 #include <QMessageBox>
 #include <map>
-
-struct chartValues{
-    QString title;
-    QSplineSeries *splineSeries = new QSplineSeries();
-    QChart *chart = new QChart();
-    QChartView *chartView = new QChartView(chart);
-    QSqlQuery query;
-};
 
 class Chart
 {

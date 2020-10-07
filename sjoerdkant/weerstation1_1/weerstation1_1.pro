@@ -15,6 +15,7 @@ SOURCES += \
 
 HEADERS += \
     chart.h \
+    chartValues.h \
     mainwindow.h
 
 FORMS += \
