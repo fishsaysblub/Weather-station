@@ -2,11 +2,7 @@
 #ifndef CHARTVALUES_H
 #define CHARTVALUES_H
 
-#include <QWidget>
 #include <QtCharts>
-#include <QtCharts/QChartGlobal>
-#include <QChartView>
-#include <QSplineSeries>
 #include <QtSql>
 
 struct chartValues{

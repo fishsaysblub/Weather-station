@@ -2,17 +2,69 @@
 
 Chart::Chart()
 {
-    //connection settings for database
+    this->connectDatabase();
+
+    //set the values necessery to make chart
+    this->tempreture.title = "tempreture";
+    this->tempreture.query.exec("select doubleTemperatuur from temperatuur");
+    this->humidity.title = "humidity";
+    this->humidity.query.exec("select doubleHumidity from humidity");
+
+    //start making charts
+    makeChart(this->tempreture);
+    makeChart(this->humidity);
+}
+
+void Chart::makeChart(struct chartValues chartvalues)
+{
+    this->makeSeries(chartvalues);
+
+    //set chart settings
+    chartvalues.chart->addSeries(chartvalues.splineSeries);
+    chartvalues.chart->legend()->hide();
+    chartvalues.chart->createDefaultAxes();
+    chartvalues.chart->axes(Qt::Vertical).first()->setRange(Yvalue_lowest, Yvalue_highest);
+    chartvalues.chart->axes(Qt::Horizontal).first()->setRange(0, Xvalue);
+    chartvalues.chart->setTitle(chartvalues.title);
+
+    //set chart visual look
+    chartvalues.chartView->setRenderHint(QPainter::Antialiasing);
+    chartvalues.chartView->chart()->setTheme(QChart::ChartThemeBlueCerulean);
+}
+
+
+void Chart::makeSeries(struct chartValues chartvalues)
+{
+    Yvalue_lowest = 0;
+    Yvalue_highest = 0;
+    Xvalue=0;
+
+    //get values from database
+    while(chartvalues.query.next()){
+        double Yvalue = chartvalues.query.value(0).toDouble();
+        chartvalues.splineSeries->append(Xvalue, Yvalue);
+        Xvalue++;
+
+        if(Yvalue < Yvalue_lowest){
+            Yvalue_lowest = Yvalue;
+        }else if(Yvalue > Yvalue_highest){
+            Yvalue_highest = Yvalue;
+        }
+    }
+}
+
+void Chart::connectDatabase()
+{
     bool retry = true;
-    this->db.setHostName("127.0.0.1");
-    this->db.setPort(3306);
-    this->db.setDatabaseName("weatherstation");
-    this->db.setUserName("root");
-    this->db.setPassword("root");
+    db.setHostName("127.0.0.1");
+    db.setPort(3306);
+    db.setDatabaseName("weatherstation");
+    db.setUserName("root");
+    db.setPassword("root");
 
     //make connection with database
     while(retry == true){
-        if(this->db.open()){
+        if(db.open()){
             retry = false;
         }else {
             //notification no connection with database
@@ -35,50 +87,15 @@ Chart::Chart()
             }
         }
     }
-
-    //set the values necessery to make chart
-    this->tempreture.title = "tempreture";
-    this->tempreture.query.exec("select doubleTemperatuur from temperatuur");
-    this->humidity.title = "humidity";
-    this->humidity.query.exec("select doubleHumidity from humidity");
-
-    makeChart(this->tempreture);
-    makeChart(this->humidity);
 }
 
-void Chart::makeChart(struct chartValues chartvalues){
-    Chart::getSeries(chartvalues);
+Chart::~Chart()
+{
+    delete tempreture.splineSeries;
+    delete tempreture.chart;
+    delete tempreture.chartView;
 
-    //set chart settings
-    chartvalues.chart->addSeries(chartvalues.splineSeries);
-    chartvalues.chart->legend()->hide();
-    chartvalues.chart->createDefaultAxes();
-    chartvalues.chart->axes(Qt::Vertical).first()->setRange(lowestValue, highestValue);
-    chartvalues.chart->axes(Qt::Horizontal).first()->setRange(0, i);
-    chartvalues.chart->setTitle(chartvalues.title);
-
-    //set chart visual look
-    chartvalues.chartView->setRenderHint(QPainter::Antialiasing);
-    chartvalues.chartView->chart()->setTheme(QChart::ChartThemeBlueCerulean);
-}
-
-
-void Chart::getSeries(struct chartValues chartvalues){
-    this->lowestValue = 0;
-    this->highestValue = 0;
-    i=0;
-
-    //get values from database
-    while(chartvalues.query.next()){
-        double value = chartvalues.query.value(0).toDouble();
-        chartvalues.splineSeries->append(i, value);
-        i++;
-
-        if(value < this->lowestValue){
-            this->lowestValue = value;
-        }else if(value > this->highestValue){
-            this->highestValue = value;
-        }
-    }
-
+    delete humidity.splineSeries;
+    delete humidity.chart;
+    delete humidity.chartView;
 }

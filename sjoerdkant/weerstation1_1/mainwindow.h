@@ -4,11 +4,6 @@
 #include "chart.h"
 
 #include <QMainWindow>
-#include <QtWidgets/QWidget>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QFormLayout>
-#include <QAbstractAxis>
-#include <QPalette>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

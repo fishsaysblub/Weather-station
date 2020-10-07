@@ -4,30 +4,26 @@
 
 #include "chartValues.h"
 
-#include <QWidget>
-#include <QtCharts>
-#include <QtCharts/QChartGlobal>
-#include <QChartView>
-#include <QSplineSeries>
-#include <QtSql>
-#include <QMessageBox>
-#include <map>
-
 class Chart
 {
 public:
     Chart();
-    void getSeries(struct chartValues chartvalues);
-    void makeChart(struct chartValues chartvalues);
-    void refreshCharts(struct chartValues chartvalues);
+    void makeSeries(chartValues chartvalues);
+    void makeChart(chartValues chartvalues);
+    void connectDatabase();
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
 
     chartValues tempreture;
     chartValues humidity;
+
 private:
-    int i;
-    double lowestValue, highestValue;
+    int Xvalue;
+    double Yvalue_lowest;
+    double Yvalue_highest;
+
+public:
+    virtual ~Chart();
 };
 
 #endif // CHART_H
