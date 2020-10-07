@@ -1,12 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "chart.h"
+
 #include <QMainWindow>
-#include <QtCharts>
-#include <QChartView>
-#include <QSplineSeries>
 #include <QtWidgets/QWidget>
-#include <QtCharts/QChartGlobal>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFormLayout>
+#include <QAbstractAxis>
+#include <QPalette>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,21 +22,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void getSeries(QSplineSeries *series, int h);
-
-    void makeChart(const QString title, QSplineSeries *series, QChart *chart, QChartView *chartView);
-
 private:
-    int i;
-
-    QSplineSeries *tempretureSeries = new QSplineSeries();
-    QChart *tempretureChart = new QChart();
-    QChartView *tempretureChartview = new QChartView(tempretureChart);
-
-    QSplineSeries *HumiditySeries = new QSplineSeries();
-    QChart *HumidityChart = new QChart();
-    QChartView *HumidityChartview = new QChartView(HumidityChart);
-
+    Chart chart;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
