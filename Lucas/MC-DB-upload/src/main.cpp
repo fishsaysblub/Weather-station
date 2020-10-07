@@ -18,7 +18,6 @@ void app_main(void)
     if(!success)
         return;
     
-    return;
     HTTPClient client = HTTPClient();
 
     Data data;
@@ -26,12 +25,13 @@ void app_main(void)
     data.Humidity = 34;
     data.Temperature = 52;
     
+    /*
     Data data2 = 
     {
         .Temperature = 34,
         .Humidity = 32
     };
-
+    */
     int result = client.PostData(data);
     if(result == ESP_OK)
         printf("is ok");

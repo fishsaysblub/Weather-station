@@ -2,7 +2,6 @@
 
 #include "esp_wifi.h"
 
-
 #ifdef DEBUG
 #define IS_DEBUG 1
 #else 
