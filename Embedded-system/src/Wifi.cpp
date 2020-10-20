@@ -73,7 +73,7 @@ void Wifi::HandleWifiEvent(int32_t event_id)
         LOGGER("Retrying to connect to wifi.");
         return;
     } 
-    
+
     // Sets WIFI_CONNECTION_FAILED_BIT
     // This bit is waited upon in "Wifi::AwaitConnection()""
     xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTION_FAILED_BIT);

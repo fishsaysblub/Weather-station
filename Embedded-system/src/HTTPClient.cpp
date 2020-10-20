@@ -7,7 +7,7 @@ HTTPClient::HTTPClient() { InitHTTPClientConfig(&_config); }
 void HTTPClient::InitHTTPClientConfig(esp_http_client_config_t *config)
 {
     memset(config, 0, sizeof(*config));
-    config->url = "http://192.168.1.5/SS_Project-5/data.php/";
+    config->url = "http://192.168.1.15/SS_Project-5/data.php/";
     config->method = HTTP_METHOD_POST;
     config->event_handler = EventHandler;
 }
