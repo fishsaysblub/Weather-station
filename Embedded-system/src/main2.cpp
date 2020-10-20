@@ -1,3 +1,4 @@
+/*
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -95,3 +96,4 @@ void app_main()
     //xTaskCreate(gpio_task3, "gpio_task3", 2048, NULL, 12, NULL);
     xTaskCreate(readTempTask, "read_temp", 2048, NULL, 9, NULL);
 }
+*/

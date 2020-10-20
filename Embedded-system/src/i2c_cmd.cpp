@@ -1,5 +1,4 @@
 #include "i2c_cmd.h"
-#include <iostream>
 
 static gpio_num_t i2c_gpio_sda = GPIO_NUM_21;
 static gpio_num_t i2c_gpio_scl = GPIO_NUM_22;
@@ -20,7 +19,7 @@ i2c_cmd::i2c_cmd()
 
     i2c_driver_install(i2c_port, I2C_MODE_MASTER, 0, 0, 0);
 
-    std::cout << "i2c config finished" << std::endl;
+    printf("i2c config finished");
     // init i2c bus and handles
 }
 
@@ -45,7 +44,7 @@ void i2c_cmd::writeCmd(uint8_t address, uint8_t *data, uint8_t data_len)
     else
     {
         {
-            std::cout << "Incorrect arguments in writeCmd()" << std::endl;
+            printf("Incorrect arguments in writeCmd()");
         }
     }
 }
@@ -71,7 +70,7 @@ void i2c_cmd::readCmd(uint8_t address, uint8_t *data_cmd, uint8_t data_cmd_len, 
     else
     {
         {
-            std::cout << "Incorrect arguments in readCmd()" << std::endl;
+            printf("Incorrect arguments in readCmd()");
         }
     }
 }

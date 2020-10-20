@@ -1,11 +1,14 @@
 #pragma once
 
 #include "esp_wifi.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/event_groups.h"
+#include <string.h>
 
 #ifdef DEBUG
 #define IS_DEBUG 1
 #else 
-#define IS_DEBUG 0
+#define IS_DEBUG 1
 #endif
 
 //! Logger for weather station
@@ -86,6 +89,14 @@ class Wifi
             \returns whether it connected or failed.
         */
 		int InitializeWifi();
+
+        //! Stops wifi and allows for deep sleep.
+        /*
+            Stops the wifi connection, a new connection must be made
+            on wake-up. Will disable wifi, bluetooth and other radio frequencies.
+        */
+        void Sleep();
+
 };
 
 

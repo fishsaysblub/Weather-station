@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstdint>
-#include "driver/i2c.h"
 
 /* Command table */
 //const 

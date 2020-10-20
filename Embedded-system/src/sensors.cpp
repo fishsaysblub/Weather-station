@@ -1,6 +1,4 @@
 #include "sensors.h"
-#include <iostream>
-#include <stdio.h>
 #include "i2c_cmd.h"
 
 i2c_cmd i2c_command;

@@ -7,7 +7,7 @@ HTTPClient::HTTPClient() { InitHTTPClientConfig(&_config); }
 void HTTPClient::InitHTTPClientConfig(esp_http_client_config_t *config)
 {
     memset(config, 0, sizeof(*config));
-    config->url = "http://192.168.1.15/SS_Project-5/data.php/";
+    config->url = "http://192.168.1.2/SS_Project-5/data.php/";
     config->method = HTTP_METHOD_POST;
     config->event_handler = EventHandler;
 }
@@ -56,6 +56,7 @@ esp_err_t HTTPClient::PerformPost(esp_http_client_handle_t *client)
 
 esp_err_t HTTPClient::EventHandler(esp_http_client_event_t *evt)
 {
+    return ESP_OK;
     if(evt->event_id == HTTP_EVENT_ON_DATA)
     {
         printf("got data in handler: %d\n", evt->data_len);

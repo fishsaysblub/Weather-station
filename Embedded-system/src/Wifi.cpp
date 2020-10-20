@@ -1,17 +1,14 @@
 #include "Wifi.h"
-
-#include <string.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/event_groups.h"
 #include "nvs_flash.h"
 
 static int s_retry_num = 0;
 static EventGroupHandle_t s_wifi_event_group;
-
+#include "esp_pm.h"
 
 Wifi::Wifi()
 {
     InitializeNVS();
+
     s_wifi_event_group = xEventGroupCreate();
 
     ESP_ERROR_CHECK(esp_netif_init());
@@ -88,7 +85,7 @@ int Wifi::InitializeWifi()
     ESP_ERROR_CHECK(esp_wifi_start()); 
 
     //TODO: Low power mode is to be tested... some day.
-    //ESP_ERROR_CHECK(esp_wifi_set_ps(WIFI_PS_MIN_MODEM));
+    ESP_ERROR_CHECK(esp_wifi_set_ps(WIFI_PS_MAX_MODEM));
     
     AwaitConnection();
 
@@ -139,4 +136,9 @@ void Wifi::AwaitConnection()
         return;
     } 
     LOGGER("Unexpected failure.");
+}
+
+void Wifi::Sleep()
+{
+    //esp_wifi_stop();
 }
