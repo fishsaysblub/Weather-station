@@ -1,0 +1,78 @@
+\hypertarget{_wifi_8h}{}\doxysection{include/\+Wifi.h File Reference}
+\label{_wifi_8h}\index{include/Wifi.h@{include/Wifi.h}}
+{\ttfamily \#include \char`\"{}esp\+\_\+wifi.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_wifi}{Wifi}}
+\begin{DoxyCompactList}\small\item\em Class handling W\+I\+FI interactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_wifi_8h_a48156cfc16c5f0d895e60968a860f1a1}{I\+S\+\_\+\+D\+E\+B\+UG}}~0
+\item 
+\#define \mbox{\hyperlink{_wifi_8h_a2e4471a2c129be9db104ded4e4a7ef93}{L\+O\+G\+G\+ER}}(log)~(\mbox{\hyperlink{_wifi_8h_a48156cfc16c5f0d895e60968a860f1a1}{I\+S\+\_\+\+D\+E\+B\+UG}} ? printf(\char`\"{}Weather station\+: \%s\textbackslash{}n\char`\"{}, log) \+: 0)
+\begin{DoxyCompactList}\small\item\em Logger for weather station. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_wifi_8h_a64d71b646354ad94ee7e10c560f0d1fa}{E\+S\+P\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+R\+E\+T\+RY}}~5
+\item 
+\#define \mbox{\hyperlink{_wifi_8h_ad552e7688532cbbecd3967538ced06ac}{W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT}}~B\+I\+T0
+\item 
+\#define \mbox{\hyperlink{_wifi_8h_a21ea789a4cfe88a26c42d93d2000d0c4}{W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+F\+A\+I\+L\+E\+D\+\_\+\+B\+IT}}~B\+I\+T1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_wifi_8h_a64d71b646354ad94ee7e10c560f0d1fa}\label{_wifi_8h_a64d71b646354ad94ee7e10c560f0d1fa}} 
+\index{Wifi.h@{Wifi.h}!ESP\_MAXIMUM\_RETRY@{ESP\_MAXIMUM\_RETRY}}
+\index{ESP\_MAXIMUM\_RETRY@{ESP\_MAXIMUM\_RETRY}!Wifi.h@{Wifi.h}}
+\doxysubsubsection{\texorpdfstring{ESP\_MAXIMUM\_RETRY}{ESP\_MAXIMUM\_RETRY}}
+{\footnotesize\ttfamily \#define E\+S\+P\+\_\+\+M\+A\+X\+I\+M\+U\+M\+\_\+\+R\+E\+T\+RY~5}
+
+
+
+Definition at line 21 of file Wifi.\+h.
+
+\mbox{\Hypertarget{_wifi_8h_a48156cfc16c5f0d895e60968a860f1a1}\label{_wifi_8h_a48156cfc16c5f0d895e60968a860f1a1}} 
+\index{Wifi.h@{Wifi.h}!IS\_DEBUG@{IS\_DEBUG}}
+\index{IS\_DEBUG@{IS\_DEBUG}!Wifi.h@{Wifi.h}}
+\doxysubsubsection{\texorpdfstring{IS\_DEBUG}{IS\_DEBUG}}
+{\footnotesize\ttfamily \#define I\+S\+\_\+\+D\+E\+B\+UG~0}
+
+
+
+Definition at line 9 of file Wifi.\+h.
+
+\mbox{\Hypertarget{_wifi_8h_a2e4471a2c129be9db104ded4e4a7ef93}\label{_wifi_8h_a2e4471a2c129be9db104ded4e4a7ef93}} 
+\index{Wifi.h@{Wifi.h}!LOGGER@{LOGGER}}
+\index{LOGGER@{LOGGER}!Wifi.h@{Wifi.h}}
+\doxysubsubsection{\texorpdfstring{LOGGER}{LOGGER}}
+{\footnotesize\ttfamily \#define L\+O\+G\+G\+ER(\begin{DoxyParamCaption}\item[{}]{log }\end{DoxyParamCaption})~(\mbox{\hyperlink{_wifi_8h_a48156cfc16c5f0d895e60968a860f1a1}{I\+S\+\_\+\+D\+E\+B\+UG}} ? printf(\char`\"{}Weather station\+: \%s\textbackslash{}n\char`\"{}, log) \+: 0)}
+
+
+
+Logger for weather station. 
+
+Will be automatically removed due to optimiser when compiling in release. Be carefule that the regular compilation is in release. When in debug, logs data to the console. 
+
+Definition at line 18 of file Wifi.\+h.
+
+\mbox{\Hypertarget{_wifi_8h_ad552e7688532cbbecd3967538ced06ac}\label{_wifi_8h_ad552e7688532cbbecd3967538ced06ac}} 
+\index{Wifi.h@{Wifi.h}!WIFI\_CONNECTED\_BIT@{WIFI\_CONNECTED\_BIT}}
+\index{WIFI\_CONNECTED\_BIT@{WIFI\_CONNECTED\_BIT}!Wifi.h@{Wifi.h}}
+\doxysubsubsection{\texorpdfstring{WIFI\_CONNECTED\_BIT}{WIFI\_CONNECTED\_BIT}}
+{\footnotesize\ttfamily \#define W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT~B\+I\+T0}
+
+
+
+Definition at line 23 of file Wifi.\+h.
+
+\mbox{\Hypertarget{_wifi_8h_a21ea789a4cfe88a26c42d93d2000d0c4}\label{_wifi_8h_a21ea789a4cfe88a26c42d93d2000d0c4}} 
+\index{Wifi.h@{Wifi.h}!WIFI\_CONNECTION\_FAILED\_BIT@{WIFI\_CONNECTION\_FAILED\_BIT}}
+\index{WIFI\_CONNECTION\_FAILED\_BIT@{WIFI\_CONNECTION\_FAILED\_BIT}!Wifi.h@{Wifi.h}}
+\doxysubsubsection{\texorpdfstring{WIFI\_CONNECTION\_FAILED\_BIT}{WIFI\_CONNECTION\_FAILED\_BIT}}
+{\footnotesize\ttfamily \#define W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+F\+A\+I\+L\+E\+D\+\_\+\+B\+IT~B\+I\+T1}
+
+
+
+Definition at line 24 of file Wifi.\+h.
+
