@@ -2,7 +2,7 @@
 
 static gpio_num_t i2c_gpio_sda = GPIO_NUM_21;
 static gpio_num_t i2c_gpio_scl = GPIO_NUM_22;
-static uint32_t i2c_frequency = 100000;
+static uint32_t i2c_frequency = 400000;
 static i2c_port_t i2c_port = I2C_NUM_0;
 
 i2c_cmd::i2c_cmd()

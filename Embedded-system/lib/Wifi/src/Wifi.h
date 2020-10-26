@@ -4,6 +4,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/event_groups.h"
 #include <string.h>
+#include "WIFI_TESTS.h"
 
 #ifdef DEBUG
 #define IS_DEBUG 1
@@ -73,6 +74,7 @@ class Wifi
 		static void EventHandler(void* arg, esp_event_base_t event_base, 
                                     int32_t event_id, void* event_data);
 
+        
         friend class WIFI_TESTS;
 
 	public:

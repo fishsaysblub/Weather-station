@@ -1,6 +1,6 @@
 <?php
-$username = "AdminWeerstation";
-$password = "kz,yRmC%?r4x8D@";
+$username = "root";
+$password = "";
 $host = "localhost";
 $db_name = "weerstation";
 $con = mysqli_connect ($host, $username, $password);

@@ -2,16 +2,12 @@
 
 #include <cstdint>
 
-/* Command table */
-//const 
-
-
 class sensor
 {
-    private:
+private:
     bool rh_measurment = false;
    
-    public:
+public:
     sensor();
 
     uint8_t readFirmware();

@@ -8,7 +8,7 @@ TaskHandle_t SensorTaskHandle;
 WeatherStation* s_Instance = nullptr;
 
 WeatherStation::WeatherStation() : 
-_WifiClient(Wifi()), _HTTPClient(HTTPClient())
+_WifiClient(Wifi()), _HTTPClient(HTTPClient()), _Sensors(Sensor())
 {
     s_event_group = xEventGroupCreate();
 
@@ -21,6 +21,7 @@ _WifiClient(Wifi()), _HTTPClient(HTTPClient())
 
 void WeatherStation::SetESPConfig()
 {
+    return;
     esp_pm_config_esp32_t config;
     config.light_sleep_enable = true;
     config.min_freq_mhz = MIN_CPU_FREQ_MHZ;
@@ -72,10 +73,9 @@ void WeatherStation::WifiTask(void *arg)
             portMAX_DELAY
         );
 
-        //_HTTPClient.PostData(_Sensors.GetData());       
-        s_Instance->SendData(); // This is a placeholder function call.
+        s_Instance->SendData();
         xEventGroupSetBits(s_event_group, DATA_POSTED_BIT);     
-        vTaskDelay(10000 / portTICK_RATE_MS);
+        //vTaskDelay(10000 / portTICK_RATE_MS);
     }
 }
 
@@ -83,8 +83,7 @@ void WeatherStation::SensorTask(void *arg)
 {
     while(1)
     {
-        s_Instance->InitialiseSensors();
-        //_Sensors.ReadSensors();
+        s_Instance->ReadSensoryData();
         xEventGroupSetBits(s_event_group, SENSOR_READ_BIT);
         vTaskDelay(10000 / portTICK_RATE_MS);
     }
@@ -97,6 +96,8 @@ void WeatherStation::InitialiseConnectivity()
     if(isInitialised == true)
         return;
    
+    isInitialised = true;
+
     int success = _WifiClient.InitializeWifi();
 
     if(success)
@@ -107,19 +108,12 @@ void WeatherStation::InitialiseConnectivity()
     if(!success)
         return;
 }
-void WeatherStation::InitialiseSensors()
-{
-    LOGGER("No sensors");
-}
+
+void WeatherStation::ReadSensoryData() { _Sensors.ReadSensors(); }
 
 void WeatherStation::SendData()
-{
-    Data data;
-    memset(&data, 0, sizeof(Data));
-    data.Humidity = 34;
-    data.Temperature = 52;
-    
-    int result = _HTTPClient.PostData(data);
+{   
+    int result = _HTTPClient.PostData(_Sensors.GetData());
     if(result == ESP_OK)
     {
         LOGGER("is ok");
@@ -128,7 +122,6 @@ void WeatherStation::SendData()
     {
         xEventGroupSetBits(s_event_group, FAILURE_BIT);
     }
-
 }
 
 WeatherStation::~WeatherStation()
@@ -145,11 +138,6 @@ WeatherStation::~WeatherStation()
 void WeatherStation::Sleep()
 {
     LOGGER("Entering sleep mode...\n");
-    _WifiClient.Sleep();
     esp_sleep_enable_timer_wakeup(57000000);
     esp_deep_sleep_start();
-    
-    //_Sensors.Sleep();
-
-    // Start wakeup routine
 }

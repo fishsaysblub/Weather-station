@@ -1,8 +1,12 @@
 #pragma once
+
 #include "HTTPClient.h"
 #include "Wifi.h"
+#include "Sensor.h"
+
 #include "esp_sleep.h"
 #include "esp_pm.h"
+
 
 #define MAIN_TASK_TAG "Main Task"
 #define WIFI_TASK_TAG "Wifi Task"
@@ -36,12 +40,13 @@ public:
     WeatherStation();
     void Start();
     void InitialiseConnectivity();
-    void InitialiseSensors();
+    void ReadSensoryData();
     virtual ~WeatherStation();
 
 private:
     Wifi _WifiClient;
     HTTPClient _HTTPClient;
+    Sensor _Sensors;
 
 };
 

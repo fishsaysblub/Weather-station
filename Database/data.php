@@ -1,9 +1,21 @@
 <?php
   include ('connection.php');
+  $_POST = json_decode(file_get_contents("php://input"), true);
 
-  echo "data: \n";
-  echo file_get_contents("php://input");
-  echo "\n";
+  $temperature = $_POST["Temperature"];
+  $humidity = $_POST["Humidity"];
+
+  $sql_insert = "INSERT INTO reading (Temperature, Humidity, Light) VALUES ('$temperature', '$humidity', -1)";
+  if(mysqli_query($con,$sql_insert))
+  {
+    echo "Done\n";
+  }
+  else
+  {
+    echo "error is ".mysqli_error($con );
+  }
+  return;
+
   $_POST = json_decode(file_get_contents("php://input"), true);
 
   //var_dump($_POST);
@@ -22,18 +34,4 @@
     }
   }
   mysqli_close($con);
-  return;
-  /*$temp = "temp";
-  $value = $_POST['temp'];
-
-  $sql_insert = "INSERT INTO data (Reading, Value) VALUES ('$temp', $value)";
-  if(mysqli_query($con,$sql_insert))
-  {
-  echo "Done";
-  mysqli_close($con);
-  }
-  else
-  {
-  echo "error is ".mysqli_error($con );
-}*/
 ?>

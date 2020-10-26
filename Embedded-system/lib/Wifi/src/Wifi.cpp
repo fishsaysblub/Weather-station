@@ -3,6 +3,7 @@
 
 static int s_retry_num = 0;
 static EventGroupHandle_t s_wifi_event_group;
+#include "esp_pm.h"
 
 Wifi::Wifi()
 {
@@ -80,9 +81,11 @@ int Wifi::InitializeWifi()
 {
     wifi_config_t wifi_config;
     InitWifiConfig(&wifi_config);
-    ESP_ERROR_CHECK(esp_wifi_set_ps(WIFI_PS_MAX_MODEM));
-    
+
     ESP_ERROR_CHECK(esp_wifi_start()); 
+
+    //TODO: Low power mode is to be tested... some day.
+    ESP_ERROR_CHECK(esp_wifi_set_ps(WIFI_PS_MAX_MODEM));
     
     AwaitConnection();
 

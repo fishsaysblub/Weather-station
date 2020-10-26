@@ -14,7 +14,7 @@ struct Data
         //! Formatting string
         /*!
             Formatting string to convert data into JSON like post
-            Be constant goddarnit, a const pointer to a constexpr
+            A const pointer to a constexpr
         */
         static constexpr const char *post_data = "{\"%s\":%.2f, \"%s\":%.2f}";
     
