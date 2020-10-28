@@ -9,6 +9,12 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+/*! \class MainWindow
+ * \brief The MainWindow class
+ *
+ * A automaticly generated class to create the main window.
+ */
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

@@ -17,7 +17,7 @@ Chart::Chart()
 
 void Chart::makeChart(struct chartValues chartvalues)
 {
-    this->makeSeries(chartvalues);
+    this->getSeries(chartvalues);
 
     //set chart settings
     chartvalues.chart->addSeries(chartvalues.splineSeries);
@@ -32,8 +32,7 @@ void Chart::makeChart(struct chartValues chartvalues)
     chartvalues.chartView->chart()->setTheme(QChart::ChartThemeBlueCerulean);
 }
 
-
-void Chart::makeSeries(struct chartValues chartvalues)
+void Chart::getSeries(struct chartValues chartvalues)
 {
     Yvalue_lowest = 0;
     Yvalue_highest = 0;
@@ -98,4 +97,6 @@ Chart::~Chart()
     delete humidity.splineSeries;
     delete humidity.chart;
     delete humidity.chartView;
+
+    db.close();
 }
