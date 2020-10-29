@@ -9,6 +9,5 @@ void WIFI_TESTS::Test_Initialise()
 {
     WIFI_TESTS tests = WIFI_TESTS::GetInstance();
     tests._Wifi = Wifi();
-    tests._Wifi.InitializeNVS();
     TEST_ASSERT_TRUE(true);
 }

@@ -21,7 +21,6 @@ _WifiClient(Wifi()), _HTTPClient(HTTPClient()), _Sensors(Sensor())
 
 void WeatherStation::SetESPConfig()
 {
-    return;
     esp_pm_config_esp32_t config;
     config.light_sleep_enable = true;
     config.min_freq_mhz = MIN_CPU_FREQ_MHZ;
@@ -75,7 +74,6 @@ void WeatherStation::WifiTask(void *arg)
 
         s_Instance->SendData();
         xEventGroupSetBits(s_event_group, DATA_POSTED_BIT);     
-        //vTaskDelay(10000 / portTICK_RATE_MS);
     }
 }
 
@@ -138,6 +136,6 @@ WeatherStation::~WeatherStation()
 void WeatherStation::Sleep()
 {
     LOGGER("Entering sleep mode...\n");
-    esp_sleep_enable_timer_wakeup(57000000);
+    esp_sleep_enable_timer_wakeup(57200000);
     esp_deep_sleep_start();
 }

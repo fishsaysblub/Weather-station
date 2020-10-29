@@ -13,11 +13,8 @@ struct CMDData
 public:
     virtual ~CMDData()
     {
-        if(OutputBuffer == nullptr)
-            return;
-
-        delete[] OutputBuffer;
-        OutputBuffer = nullptr;
+        if(OutputBuffer != nullptr)
+            delete[] OutputBuffer;
     }
 };
 

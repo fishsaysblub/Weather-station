@@ -2,7 +2,6 @@
 
 #include "esp_http_client.h"
 #include "Data.h"
-
 //! Wrapper for HTTP requests.
 /*!
     Prepares and manages the HTTP client for sending data.

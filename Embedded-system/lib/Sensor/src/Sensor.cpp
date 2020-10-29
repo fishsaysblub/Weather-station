@@ -1,4 +1,4 @@
-#include "Sensor.h"
+#include <Sensor.h>
 
 Sensor::Sensor() : _I2C(I2C()), _Data(nullptr) {}
 
@@ -58,9 +58,6 @@ const Data& Sensor::GetData() const { return *_Data; }
 
 Sensor::~Sensor()
 {
-    if(_Data == nullptr)
-        return;
-
-    delete _Data;
-    _Data = nullptr;
+    if(_Data != nullptr)
+        delete _Data;
 }
