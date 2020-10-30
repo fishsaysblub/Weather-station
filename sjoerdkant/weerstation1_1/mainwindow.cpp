@@ -9,11 +9,27 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("WeatherStation");
 
     //add charts to ui
-    ui->gridLayout_3->addWidget(this->chart.tempreture.chartView, 1, 0);
-    ui->gridLayout_3->addWidget(this->chart.humidity.chartView, 1, 1);
+    ui->gridLayout_tempreture->addWidget(this->chart.temperature.chartView);
+    ui->gridLayout_humidity->addWidget(this->chart.humidity.chartView);
+    ui->gridLayout_Light->addWidget(this->chart.light.chartView);
+
+    //update label_last_updated
+    ui->label_last_updated->setText(QVariant(chart.lastUpdated()).toString());
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_horizontalSlider_sliderMoved(int position)
+{
+    //update charts
+    chart.updateSeries(chart.temperature, position * 60);
+    chart.updateSeries(chart.humidity,   position * 60);
+    chart.updateSeries(chart.light,      position * 60);
+
+    //update labels
+    ui->label_hours->setText(QStringLiteral("last %1 hours").arg(position));
+    ui->label_last_updated->setText(QVariant(chart.lastUpdated()).toString());
 }

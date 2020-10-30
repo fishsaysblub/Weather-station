@@ -16,6 +16,8 @@ struct chartValues{
     QSplineSeries *splineSeries = new QSplineSeries();  /*!< The line of the chart */
     QChart *chart = new QChart();                       /*!< The chart itself*/
     QChartView *chartView = new QChartView(chart);      /*!< The visual aspects of the chart */
+    QValueAxis *axisX = new QValueAxis;                 /*!< The X axis of the chart */
+    QValueAxis *axisY = new QValueAxis;                 /*!< The Y axis of the chart */
     QSqlQuery query;                                    /*!< The query to get the data from the database for the chart */
 };
 

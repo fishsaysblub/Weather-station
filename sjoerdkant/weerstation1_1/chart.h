@@ -2,6 +2,7 @@
 #ifndef CHART_H
 #define CHART_H
 
+#include <QDateTime>
 #include "chartValues.h"
 
 /*! \class Chart
@@ -22,20 +23,20 @@ public:
     Chart();
 
     /*!
-     * \brief getSeries
+     * \brief updateSeries
      *
      * A public member to  get the series from the database for the chart.
      * \param chartvalues the struct of the chart
      * \sa db() and chartValues()
      */
-    void getSeries(chartValues chartvalues);
+    void updateSeries(chartValues chartvalues, int aantalMinutes);
 
     /*!
      * \brief makeChart
      *
      * A public member to set all the variables of the chart.
      * \param chartvalues the struct of the chart
-     * \sa chartValues(), Xvalue(), Yvalue_lowest() and Yvalue_highest()
+     * \sa updateSeries(), chartValues(), Yvalue_lowest() and Yvalue_highest()
      */
     void makeChart(chartValues chartvalues);
 
@@ -47,15 +48,23 @@ public:
      */
     void connectDatabase();
 
+    /*!
+     * \brief lastUpdated
+     *
+     * A public member to display the last data update.
+     */
+    QDateTime lastUpdated();
+
+public:
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");  /*!< The database of type mysql. */
 
-    chartValues tempreture; /*!< A \sa chartValues() struct named tempreture. */
-    chartValues humidity;   /*!< A \sa chartValues() struct named humidity. */
+    chartValues temperature;                                /*!< A \sa chartValues() struct named temperature. */
+    chartValues humidity;                                   /*!< A \sa chartValues() struct named humidity. */
+    chartValues light;                                      /*!< A \sa chartValues() struct named light. */
 
 private:
-    int Xvalue;             /*!< A int containing the X value of a chart. */
-    double Yvalue_lowest;   /*!< A double containing the lowest Y value of a chart. */
-    double Yvalue_highest;  /*!< A double containing the highest Y value of a chart. */
+    double  chart_Yvalue_lowest;                            /*!< A double containing the lowest Y value of a chart. */
+    double  chart_Yvalue_highest;                           /*!< A double containing the highest Y value of a chart. */
 
 public:
     /*!
