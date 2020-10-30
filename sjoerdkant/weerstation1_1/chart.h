@@ -58,9 +58,9 @@ public:
 public:
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");  /*!< The database of type mysql. */
 
-    chartValues temperature;                                /*!< A \sa chartValues() struct named temperature. */
-    chartValues humidity;                                   /*!< A \sa chartValues() struct named humidity. */
-    chartValues light;                                      /*!< A \sa chartValues() struct named light. */
+    chartValues chart_temperature;                                /*!< A \sa chartValues() struct named chart_temperature. */
+    chartValues chart_humidity;                                   /*!< A \sa chartValues() struct named chart_humidity. */
+    chartValues chart_light;                                      /*!< A \sa chartValues() struct named chart_light. */
 
 private:
     double  chart_Yvalue_lowest;                            /*!< A double containing the lowest Y value of a chart. */

@@ -6,24 +6,24 @@ Chart::Chart()
     this->connectDatabase();
 
     //set the values of temperature chart
-    this->temperature.title = "Temperature";
-    this->temperature.query.exec("select Temperature from reading");
-    this->temperature.axisY->setTitleText("°c");
+    this->chart_temperature.title = "Temperature";
+    this->chart_temperature.query.exec("select Temperature from reading");
+    this->chart_temperature.axisY->setTitleText("°c");
 
     //set the values of humidity chart
-    this->humidity.title = "Humidity";
-    this->humidity.query.exec("select Humidity from reading");
-    this->humidity.axisY->setTitleText("%");
+    this->chart_humidity.title = "Humidity";
+    this->chart_humidity.query.exec("select Humidity from reading");
+    this->chart_humidity.axisY->setTitleText("%");
 
     //set the values of light chart
-    this->light.title = "Light";
-    this->light.query.exec("select light from reading");
-    this->light.axisY->setTitleText("lux");
+    this->chart_light.title = "Light";
+    this->chart_light.query.exec("select light from reading");
+    this->chart_light.axisY->setTitleText("lux");
 
     //start making charts
-    makeChart(this->temperature);
-    makeChart(this->humidity);
-    makeChart(this->light);
+    makeChart(this->chart_temperature);
+    makeChart(this->chart_humidity);
+    makeChart(this->chart_light);
 }
 
 void Chart::makeChart(chartValues chartvalues)
@@ -142,23 +142,23 @@ void Chart::connectDatabase()
 
 Chart::~Chart()
 {
-    delete temperature.splineSeries;
-    delete temperature.chart;
-    delete temperature.chartView;
-    delete temperature.axisX;
-    delete temperature.axisY;
+    delete chart_temperature.splineSeries;
+    delete chart_temperature.chart;
+    delete chart_temperature.chartView;
+    delete chart_temperature.axisX;
+    delete chart_temperature.axisY;
 
-    delete humidity.splineSeries;
-    delete humidity.chart;
-    delete humidity.chartView;
-    delete temperature.axisX;
-    delete temperature.axisY;
+    delete chart_humidity.splineSeries;
+    delete chart_humidity.chart;
+    delete chart_humidity.chartView;
+    delete chart_humidity.axisX;
+    delete chart_humidity.axisY;
 
-    delete light.splineSeries;
-    delete light.chart;
-    delete light.chartView;
-    delete temperature.axisX;
-    delete temperature.axisY;
+    delete chart_light.splineSeries;
+    delete chart_light.chart;
+    delete chart_light.chartView;
+    delete chart_light.axisX;
+    delete chart_light.axisY;
 
     db.close();
 }
