@@ -15,21 +15,13 @@ Chart::Chart()
     this->chart_humidity.query.exec("select Humidity from reading");
     this->chart_humidity.axisY->setTitleText("%");
 
-    //set the values of light chart
-    this->chart_light.title = "Light";
-    this->chart_light.query.exec("select light from reading");
-    this->chart_light.axisY->setTitleText("lux");
-
     //start making charts
     makeChart(this->chart_temperature);
     makeChart(this->chart_humidity);
-    makeChart(this->chart_light);
 }
 
 void Chart::makeChart(chartValues chartvalues)
 {
-    this->updateSeries(chartvalues, 60);
-
     //set chart settings
     chartvalues.chart->legend()->hide();
     chartvalues.chart->setTitle(chartvalues.title);
@@ -44,6 +36,8 @@ void Chart::makeChart(chartValues chartvalues)
     //add axis to the chart
     chartvalues.chart->addAxis(chartvalues.axisX, Qt::AlignBottom);
     chartvalues.chart->addAxis(chartvalues.axisY, Qt::AlignLeft);
+
+    this->updateSeries(chartvalues, 60);
 }
 
 void Chart::updateSeries(chartValues chartvalues, int aantalMinutes)
@@ -153,12 +147,6 @@ Chart::~Chart()
     delete chart_humidity.chartView;
     delete chart_humidity.axisX;
     delete chart_humidity.axisY;
-
-    delete chart_light.splineSeries;
-    delete chart_light.chart;
-    delete chart_light.chartView;
-    delete chart_light.axisX;
-    delete chart_light.axisY;
 
     db.close();
 }

@@ -60,7 +60,6 @@ public:
 
     chartValues chart_temperature;                                /*!< A \sa chartValues() struct named chart_temperature. */
     chartValues chart_humidity;                                   /*!< A \sa chartValues() struct named chart_humidity. */
-    chartValues chart_light;                                      /*!< A \sa chartValues() struct named chart_light. */
 
 private:
     double  chart_Yvalue_lowest;                            /*!< A double containing the lowest Y value of a chart. */
