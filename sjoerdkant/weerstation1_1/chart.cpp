@@ -136,17 +136,17 @@ void Chart::connectDatabase()
 
 Chart::~Chart()
 {
-    delete chart_temperature.splineSeries;
-    delete chart_temperature.chart;
-    delete chart_temperature.chartView;
-    delete chart_temperature.axisX;
-    delete chart_temperature.axisY;
+//    delete chart_temperature.splineSeries;
+//    delete chart_temperature.chart;
+//    delete chart_temperature.chartView;
+//    delete chart_temperature.axisX;
+//    delete chart_temperature.axisY;
 
-    delete chart_humidity.splineSeries;
-    delete chart_humidity.chart;
-    delete chart_humidity.chartView;
-    delete chart_humidity.axisX;
-    delete chart_humidity.axisY;
+//    delete chart_humidity.splineSeries;
+//    delete chart_humidity.chart;
+//    delete chart_humidity.chartView;
+//    delete chart_humidity.axisX;
+//    delete chart_humidity.axisY;
 
     db.close();
 }
